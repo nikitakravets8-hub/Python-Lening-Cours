@@ -7,6 +7,16 @@
     -[] реализовать хранилище задач
 """
 
+def show_collection(task_list):
+    print("=" * 45)
+    for i,j in enumerate(task_list):
+        print(i + 1, j)
+    print("=" * 45)
+
+def show_message(message= None ,mes_action= None):
+    if message is not None:
+        print(f"Новая задача {message} успешно {mes_action}")
+    input("Нажмите Enter  для продолжения:")
 
 is_running = True
 collection = ["task1,task2"] #list
@@ -22,38 +32,38 @@ while is_running:
    choice_user = input("Ввидите свой выбор: ")
    match str(choice_user):
        case "1":
-           print("=" * 45)
-           for i,j in enumerate(collection):
-               print(i + 1 , j)
-           print("=" * 45)
-           input("Нажмите Enter  для продолжения: ")
+           show_collection(task_list=collection)
+           show_message()
        case "2":
            add_task = input("Ввидите имя задачи: ")
            collection.append(add_task)
+           show_message(add_task , "добавленна")
        case "3":
-           print("=" * 45)
-           for i,j in enumerate(collection):
-               print(i + 1 , j)
-           print("=" * 45)
+           show_collection(task_list=collection)
            select_task = int(input("Введите номер задачи для редактирования: "))
            edit_task = input("Укажите новое имя задачи: ")
            collection[select_task - 1] = edit_task
+           show_message(edit_task , "отредоктированна")
        case "4":
-            print("=" * 45)
-            for key, item in enumerate(collection):
-                print(key + 1, item)
-            print("=" * 45)
+            show_collection(task_list=collection)
             delete_edit = int(input("Введите номер задачи для удаления: "))
             collection.pop(delete_edit -1)
+            show_message(delete_edit , " удалена")
+
        case "5":
-           is_running = False
+           confirm = input("Вы дейтивельно хотите выйти из приложения? Да/Нет")
+           if (confirm == "нет"
+               or confirm == "н"
+               or confirm == "д"
+               or confirm == "n"
+               or confirm == "y"
+               or confirm == "l"):
+            is_running = False
            print("До свидания!")
        case _:
            print("Такого пункта нет!")
 
    print(collection)
-
-
 
 
 
