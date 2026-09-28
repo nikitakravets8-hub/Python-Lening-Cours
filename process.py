@@ -17,7 +17,6 @@ def start():
     process.join()
     print(process.name)
     time.sleep(10)
-    
     #process.kill()
     print(process.is_alive())
 
